@@ -131,8 +131,10 @@ ${answer}
 
 Berikan evaluasi singkat dalam 2-3 kalimat mengenai:
 1. Kualitas jawaban (baik/cukup/kurang)
+2. Pemahaman terkait proposal, apakah user sudh memahami isi proposalnya dengan baik?
 2. Saran perbaikan jika diperlukan
-3. Poin tambahan yang perlu dipertimbangkan
+3. Hal yg perlu dipertimbangkan
+4. Pujian hangat, self love dan membangkitkan motivasi
 
 Gunakan bahasa yang konstruktif dan akademis.`;
 
