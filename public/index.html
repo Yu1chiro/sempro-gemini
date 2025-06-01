@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sempro bareng gemini</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=1gc8bmRw"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  </head>
+  <body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-lg">
+      <div class="container mx-auto px-6 py-4">
+        <h1 class="text-3xl font-bold text-indigo-800 text-center">
+          <i class="fas fa-microphone mr-3"></i>
+          SIMULASI SEMPRO & SKRIPSI BERSAMA GEMINI
+        </h1>
+        <p class="text-gray-800 text-center mb-3 mt-2">Role Based : <span class="text-gray-800 font-semibold">Critical, Logical, Pragmatics and Perfectionist</span></p>
+        <p class="text-gray-600 text-center mb-3">Siap dibantai gemini? kalo siap gass🔥🚀</p>
+        <p class="text-xs text-gray-700 text-center">&copy; 2025 | Yuii</p>
+      </div>
+    </header>
+
+    <div class="container mx-auto px-6 py-8">
+      <!-- Storage Control Section -->
+      <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="text-xl font-bold text-gray-800">
+              <i class="fas fa-database mr-2 text-green-600"></i>
+              Kontrol Data Tersimpan
+            </h2>
+            <p class="text-gray-600 text-sm mt-1">Kelola data proposal dan pertanyaan yang tersimpan</p>
+          </div>
+          <div class="flex space-x-3">
+            <button id="loadDataBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-3 rounded-lg transition-colors">Load</button>
+            <button id="clearDataBtn" class="bg-red-600 hover:bg-red-700 text-white px-3 py-3 rounded-lg transition-colors">Delete</button>
+          </div>
+        </div>
+        <div id="storageStatus" class="mt-3 text-sm text-gray-600">Status: Belum ada data tersimpan</div>
+      </div>
+
+      <!-- Input Section -->
+      <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6">
+          <i class="fas fa-edit mr-2 text-blue-600"></i>
+          Input Proposal Anda (Bab 1, 2, 3)
+        </h2>
+
+        <div class="grid md:grid-cols-1 gap-6">
+          <div>
+            <label class="block text-gray-700 font-semibold mb-3">
+              <i class="fas fa-book mr-2"></i>
+              BAB 1 - Pendahuluan
+            </label>
+            <textarea
+              id="bab1Input"
+              class="w-full h-32 p-4 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none resize-none"
+              placeholder="Contoh : PENDAHULUAN 1.1 Latar Belakang Masalah Bahasa merupakan salah satu sarana komunikasi yang sangat vital dalam kehidupan manusia....... "
+            ></textarea>
+          </div>
+
+          <div>
+            <label class="block text-gray-700 font-semibold mb-3">
+              <i class="fas fa-book-open mr-2"></i>
+              BAB 2 - Tinjauan Pustaka/Landasan Teori
+            </label>
+            <textarea
+              id="bab2Input"
+              class="w-full h-32 p-4 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none resize-none"
+              placeholder="Contoh : KAJIAN PUSTAKA Almunawary (2019) dalam penelitiannya membahas mengenai tindak tutur ekspresif dalam anime Tsurezure episode 1.............."
+            ></textarea>
+          </div>
+
+          <div>
+            <label class="block text-gray-700 font-semibold mb-3">
+              <i class="fas fa-cogs mr-2"></i>
+              BAB 3 - Metodologi
+            </label>
+            <textarea
+              id="bab3Input"
+              class="w-full h-32 p-4 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none resize-none"
+              placeholder="METODE PENELITIAN Metode penelitian yang digunakan dalam penelitian ini adalah metode penelitian kualitatif. Penelitian kualitatif merupakan metode penelitian yang digunakan untuk meneliti kondisi objek..................."
+            ></textarea>
+          </div>
+        </div>
+
+        <div class="flex justify-center mt-6">
+          <button id="generateBtn" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+            Mulai Simulasi Ujian 🚀
+          </button>
+        </div>
+      </div>
+
+      <!-- Loading Section -->
+      <div id="loadingSection" class="hidden bg-white rounded-xl shadow-lg p-8 mb-8">
+        <div class="flex items-center justify-center">
+          <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mr-4"></div>
+          <span class="text-gray-700 text-lg">Siapkan mental pertanyaanmu sedang dimuat....</span>
+        </div>
+      </div>
+
+      <!-- Questions Section -->
+      <div id="questionsSection" class="hidden bg-white rounded-xl shadow-lg p-8 mb-8">
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-2xl font-bold text-gray-800">
+            <i class="fas fa-question-circle mr-2 text-green-600"></i>
+            Pertanyaan Penguji
+          </h2>
+          <div class="flex space-x-3">
+            <button id="playAllBtn" class="bg-green-600 hover:bg-green-700 text-white px-3 py-3 rounded-lg transition-colors">Play all</button>
+            <button id="stopBtn" class="bg-red-600 hover:bg-red-700 text-white px-3 py-3 rounded-lg transition-colors">Stop</button>
+          </div>
+        </div>
+
+        <div id="questionsContainer" class="space-y-6">
+          <!-- Questions akan ditampilkan di sini -->
+        </div>
+      </div>
+
+      <!-- Answer Section -->
+      <div id="answerSection" class="hidden bg-white rounded-xl shadow-lg p-8">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6">
+          <i class="fas fa-pen mr-2 text-purple-600"></i>
+          Jawaban Anda
+        </h2>
+
+        <div class="mb-4">
+          <label class="block text-gray-700 font-semibold mb-3">Pertanyaan yang sedang dijawab:</label>
+          <div id="currentQuestion" class="bg-gray-100 p-4 rounded-lg text-gray-800 mb-4"></div>
+        </div>
+
+        <textarea id="answerInput" class="w-full h-32 p-4 border-2 border-gray-300 rounded-lg focus:border-purple-500 focus:outline-none resize-none mb-4" placeholder="Ketik jawaban Anda di sini..."></textarea>
+
+        <div class="flex justify-between">
+          <button id="submitAnswerBtn" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg transition-colors">
+            <i class="fas fa-paper-plane mr-2"></i>
+            Submit Jawaban
+          </button>
+          <button id="nextQuestionBtn" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg transition-colors">
+            Pertanyaan Selanjutnya
+            <i class="fas fa-arrow-right ml-2"></i>
+          </button>
+        </div>
+
+        <!-- Evaluation Result -->
+        <div id="evaluationResult" class="hidden mt-6 p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded-lg">
+          <h3 class="font-bold text-yellow-800 mb-2">
+            <i class="fas fa-clipboard-check mr-2"></i>
+            Evaluasi AI:
+          </h3>
+          <div id="evaluationText" class="text-yellow-700"></div>
+        </div>
+      </div>
+
+      <!-- Progress Section -->
+      <div id="progressSection" class="hidden bg-white rounded-xl shadow-lg p-6 mt-8">
+        <h3 class="text-lg font-bold text-gray-800 mb-4">
+          <i class="fas fa-chart-pie mr-2 text-indigo-600"></i>
+          Progress Simulasi
+        </h3>
+        <div class="bg-gray-200 rounded-full h-4 mb-2">
+          <div id="progressBar" class="bg-indigo-600 h-4 rounded-full transition-all duration-300" style="width: 0%"></div>
+        </div>
+        <p id="progressText" class="text-sm text-gray-600">0 dari 0 pertanyaan selesai</p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6 mt-12">
+      <div class="container mx-auto px-6 text-center">
+        <p>&copy; 2025 | Yuii </p>
+      </div>
+    </footer>
+
+    <script src="main.js"></script>
+  </body>
+</html>
