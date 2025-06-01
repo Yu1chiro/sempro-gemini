@@ -129,14 +129,14 @@ ${question}
 JAWABAN:
 ${answer}
 
-Berikan evaluasi singkat dalam 2-3 kalimat mengenai:
-1. Kualitas jawaban (baik/cukup/kurang)
-2. Pemahaman terkait proposal, apakah user sudh memahami isi proposalnya dengan baik?
-2. Saran perbaikan jika diperlukan
-3. Hal yg perlu dipertimbangkan
-4. Pujian hangat, self love dan membangkitkan motivasi
+Buat evaluasi singkat dalam 2–3 kalimat tanpa menulis ulang pertanyaan mencakup:
+Penilaian terhadap kualitas jawaban (baik/cukup/kurang), disertai alasan singkat.
+Apakah penjawab memahami isi proposalnya secara keseluruhan?
+Saran atau masukan yang bisa membantu memperjelas dan memperkuat isi jawaban.
+Hal-hal yang bisa dipertimbangkan ke depannya agar penelitian lebih matang.
+Tambahkan kalimat penutup yang positif dan memotivasi, dengan bahasa yang hangat namun tetap akademis.
 
-Gunakan bahasa yang konstruktif dan akademis.`;
+Gunakan bahasa yang jelas, sopan, tidak menghakimi, dan tetap menjaga nuansa akademik serta konstruktif.`; 
 
     const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API_KEY}`, {
       method: 'POST',
